@@ -1,4 +1,8 @@
 import { createServer } from 'node:http';
+import { Readable } from 'node:stream';
+
+import SystemInfoStream from './dataGenerator.js';
+
 
 const PORT = 3000;
 createServer(async (request, response) => {
@@ -11,11 +15,20 @@ createServer(async (request, response) => {
     response.end();
     return;
   }
+  Readable.toWeb(new SystemInfoStream()).pipeTo(
+    new WritableStream({
+      write(chunk) {
+        response.write(chunk)
+      },
+      close() {
+        response.close();
+      },
+    })
+  );
   response.writeHead(200, headers);
-  response.end("hello");
 })
   .listen(PORT)
-  .on('error', (err) => {
+  .on("error", (err) => {
     console.error(`Server error: ${err}`);
   })
   .on("listening", (_) => {
