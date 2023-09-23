@@ -1,8 +1,8 @@
 import { createServer } from 'node:http';
 import { Readable } from 'node:stream';
+import { WritableStream } from 'node:stream/web';
 
 import SystemInfoStream from './dataGenerator.js';
-
 
 const PORT = 3000;
 createServer(async (request, response) => {
@@ -15,10 +15,12 @@ createServer(async (request, response) => {
     response.end();
     return;
   }
-  Readable.toWeb(new SystemInfoStream()).pipeTo(
+  request.once('close', _ => console.log('connection was closed!'))
+  Readable.toWeb(new SystemInfoStream())
+  .pipeTo(
     new WritableStream({
       write(chunk) {
-        response.write(chunk)
+        response.write(chunk);
       },
       close() {
         response.close();
