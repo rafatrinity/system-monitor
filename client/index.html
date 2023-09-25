@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link type="image/png" sizes="96x96" rel="icon" href="icons8-chart-96.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>system monitor</title>
-</head>
-<body>
-  <button id="start">start</button>
-  <button id="stop">stop</button>
-  <script src="index.js" type="module"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      type="image/png"
+      sizes="96x96"
+      rel="icon"
+      href="icons8-chart-96.png"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>system monitor</title>
+  </head>
+  <body>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+    <canvas id="myChart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.27.0/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0/dist/chartjs-adapter-luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@2.0.0/dist/chartjs-plugin-streaming.min.js"></script>
+    <script src="index.js" type="module"></script>
+    <script src="chart.js" type="module"></script>
+  </body>
 </html>
