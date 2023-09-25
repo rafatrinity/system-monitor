@@ -11,6 +11,7 @@ start.addEventListener("click", async () => {
 
     var canvas1 = document.createElement("canvas");
     canvas1.id = "cpu" + i;
+    
     linha.appendChild(canvas1);
 
     var canvas2 = document.createElement("canvas");
