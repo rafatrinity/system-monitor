@@ -17,9 +17,10 @@ async function consumeStream(signal) {
     .pipeTo(
       new WritableStream({
         write(chunk) {
-          console.log(chunk);
+          // console.log(chunk);
           window.FreeMemory = parseFloat(chunk['Free Memory']) * 10
           window.TotalMemory = parseFloat(chunk['Total Memory']) * 10
+          window.CpuUsage = chunk['CPU Usage'];
         },
       })
     );

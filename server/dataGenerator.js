@@ -61,7 +61,7 @@ function getCpuUsage() {
         });
       }
       resolve(percentages);
-    }, 1000);
+    }, 500);
   });
 }
 
@@ -96,7 +96,7 @@ class SystemInfoStream extends Readable {
           clearInterval(this._interval);
           this._interval = null;
         }
-      }, 1000);
+      }, 500);
     }
   }
 

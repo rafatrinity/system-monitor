@@ -1,39 +1,50 @@
 const [start, stop] = ["start", "stop"].map((_) => document.getElementById(_));
-start.addEventListener('click', _=>{
-  const data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [],
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255,99,132,1)",
-        borderWidth: 1,
-      },
-    ],
-  };
-  
-  const config = {
-    type: "line",
-    data,
-    options: {
-      scales: {
-        x: {
-          type: "realtime",
-          realtime: {
-            onRefresh: (chart) => {
-              chart.data.datasets.forEach((dataset) => {
-                dataset.data.push({
-                  x: Date.now(),
-                  y: window.FreeMemory
+start.addEventListener("click", async () => {
+  while (!window?.CpuUsage) {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+  }
+  for (let i = 0; i < window.CpuUsage?.length; i++) {
+    const cpu = window.CpuUsage[i];
+    const [R, G, B] = [
+      Math.floor(Math.random() * 256),
+      Math.floor(Math.random() * 256),
+      Math.floor(Math.random() * 256),
+    ];
+    const datasets=[{
+      label: `${cpu.name} ${i} usage`,
+      data: [],
+      backgroundColor: `rgba(${R}, ${G}, ${B}, 0.4)`,
+      borderColor: `rgba(${R}, ${G}, ${B}, 1)`,
+      tension: 0.2,
+      borderWidth: 1,
+      fill: true,
+    }];
+
+    const config = {
+      type: "line",
+      data: {datasets},
+      options: {
+        scales: {
+          x: {
+            type: "realtime",
+            realtime: {
+              duration: 45000,
+              onRefresh: (chart) => {
+                chart.data.datasets.forEach((dataset) => {
+                  dataset.data.push({
+                    x: Date.now(),
+                    y: parseFloat(window.CpuUsage[i].usage),
+                  });
                 });
-              });
+              },
             },
           },
+          y: { beginAtZero: true, type: "linear" },
         },
-        y: { beginAtZero: true },
       },
-    },
-  };
-  const myChart = new Chart(document.getElementById("myChart"), config);
-})
+    };
+    console.log(parseFloat(window.CpuUsage[i].usage));
+    new Chart(document.getElementById("cpu"+i), config);
+  }
+
+});
