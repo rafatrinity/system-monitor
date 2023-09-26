@@ -10,19 +10,21 @@ start.addEventListener("click", async () => {
       Math.floor(Math.random() * 256),
       Math.floor(Math.random() * 256),
     ];
-    const datasets=[{
-      label: `${cpu.name} ${i} usage`,
-      data: [],
-      backgroundColor: `rgba(${R}, ${G}, ${B}, 0.4)`,
-      borderColor: `rgba(${R}, ${G}, ${B}, 1)`,
-      tension: 0.2,
-      borderWidth: 1,
-      fill: true,
-    }];
+    const datasets = [
+      {
+        label: `${cpu.name} ${i} usage`,
+        data: [],
+        backgroundColor: `rgba(${R}, ${G}, ${B}, 0.4)`,
+        borderColor: `rgba(${R}, ${G}, ${B}, 1)`,
+        tension: 0.2,
+        borderWidth: 1,
+        fill: true,
+      },
+    ];
 
     const config = {
       type: "line",
-      data: {datasets},
+      data: { datasets },
       options: {
         scales: {
           x: {
@@ -39,12 +41,12 @@ start.addEventListener("click", async () => {
               },
             },
           },
-          y: { beginAtZero: true, type: "linear" },
+          y: { beginAtZero: true, type: "linear", min: 0, max: 100 },
         },
       },
     };
     console.log(parseFloat(window.CpuUsage[i].usage));
-    new Chart(document.getElementById("cpu"+i), config);
+    new Chart(document.getElementById("cpu" + i), config);
   }
-
+  
 });
