@@ -3,6 +3,11 @@ coluna.className = "col";
 coluna.style="width: 66vw;";
 document.body.appendChild(coluna);
 
+var canvas = document.createElement("canvas");
+canvas.id = "cpuAvg";
+canvas.style = "width:1200px; height: 400px;"
+coluna.appendChild(canvas);
+
 const [start, stop] = ["start", "stop"].map((_) => document.getElementById(_));
 start.addEventListener("click", async () => {
   while (!window?.CpuUsage) {
