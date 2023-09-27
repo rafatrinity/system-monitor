@@ -25,14 +25,6 @@ function getMemoryInfo() {
   };
 }
 
-function getLoadAverages() {
-  const loadavg = os.loadavg();
-
-  return {
-    "Load Averages": `1 min: ${loadavg[0].toFixed(4)}, 5 mins: ${loadavg[1]}.`,
-  };
-}
-
 function getCpuUsage() {
   return new Promise((resolve) => {
     let startMeasure = os.cpus();
@@ -78,7 +70,7 @@ async function getSystemInfo() {
     "OS Release": os.release(),
     "OS Uptime": formatUptime(os.uptime()),
     ...getMemoryInfo(),
-    ...getLoadAverages(),
+    "Load Averages": os.loadavg(),
     "CPU Usage": cpuUsage,
   };
 }

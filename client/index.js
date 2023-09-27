@@ -31,9 +31,11 @@ let abortController = new AbortController();
 
 start.addEventListener('click', async()=>{
   window.resp = await consumeStream(abortController.signal);
+  window.pause = false;
 })
 
 stop.addEventListener('click',()=>{
+  window.pause = true;
   abortController.abort()
   console.log('aborting...');
   abortController = new AbortController();
