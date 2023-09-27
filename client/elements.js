@@ -1,33 +1,37 @@
-var coluna = document.createElement("div");
-coluna.className = "col";
-coluna.style="width: 66vw;";
-document.body.appendChild(coluna);
-
-var canvas = document.createElement("canvas");
-canvas.id = "cpuAvg";
-canvas.style = "width:1200px; height: 400px;"
-coluna.appendChild(canvas);
-
 const [start, stop] = ["start", "stop"].map((_) => document.getElementById(_));
 start.addEventListener("click", async () => {
   while (!window?.CpuUsage) {
     await new Promise((resolve) => setTimeout(resolve, 500));
   }
-  for (let i = 0; i < window.CpuUsage?.length; i+=2) {
-    var linha = document.createElement("div");
-    linha.className = "row";
-    linha.style="margin-bottom:1rem; display: inline-block;";
-    
-    var canvas1 = document.createElement("canvas");
-    canvas1.id = "cpu" + i;
-    canvas1.style = "width:600px; height: 200px;"
-    
-    var canvas2 = document.createElement("canvas");
-    canvas2.id = "cpu" + (i + 1);
-    canvas2.style = "width:600px; height: 200px;"
-    
-    coluna.appendChild(linha);
-    linha.appendChild(canvas1);
-    linha.appendChild(canvas2);
+  var cpuContainer = document.createElement("div");
+  cpuContainer.className = "cpuContainer";
+  cpuContainer.style = `display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        grid-column-gap: 10px;
+                        grid-row-gap: 1em;
+                        width: 98vw;
+                        height: 98vh;
+                        align-content: center;`;
+  document.body.appendChild(cpuContainer);
+
+  let cpuAvg = document.createElement("canvas");
+  cpuAvg.id = "cpuAvg";
+  cpuAvg.style = `grid-column-start: 1;
+                  grid-column-end: 3;
+                  grid-row-start: 1;
+                  grid-row-end: 3;
+                  display: grid;
+                  max-width: 97vw;
+                  max-height: ${(98 / window.CpuUsage?.length) * 2}vh;`;
+  cpuContainer.appendChild(cpuAvg);
+
+  for (let i = 0; i < window.CpuUsage?.length; i++) {
+    let cpu = document.createElement("canvas");
+    cpu.id = "cpu" + i;
+    cpu.style = `
+                display: grid;
+                max-width: 98%;
+                max-height: ${98 / window.CpuUsage?.length}vh;`;
+    cpuContainer.appendChild(cpu);
   }
 });
