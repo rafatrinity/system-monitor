@@ -61,17 +61,17 @@ async function getSystemInfo() {
   const cpuUsage = await getCpuUsage();
   return {
     Platform: os.platform(),
-    "Temp Directory Path": os.tmpdir(),
-    "Home Directory Path": os.homedir(),
-    "Host Name": os.hostname(),
-    "OS Type": os.type(),
-    "OS Platform": os.platform(),
-    "OS Architecture": os.arch(),
-    "OS Release": os.release(),
-    "OS Uptime": formatUptime(os.uptime()),
+    "Temp_Directory_Path": os.tmpdir(),
+    "Home_Directory_Path": os.homedir(),
+    "Host_Name": os.hostname(),
+    "OS_Type": os.type(),
+    "OS_Platform": os.platform(),
+    "OS_Architecture": os.arch(),
+    "OS_Release": os.release(),
+    "OS_Uptime": formatUptime(os.uptime()),
     ...getMemoryInfo(),
     "Load Averages": os.loadavg(),
-    "CPU Usage": cpuUsage,
+    "CPU_Usage": cpuUsage,
   };
 }
 class SystemInfoStream extends Readable {

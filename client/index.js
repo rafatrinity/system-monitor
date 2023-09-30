@@ -17,10 +17,8 @@ async function consumeStream(signal) {
     .pipeTo(
       new WritableStream({
         write(chunk) {
-          // console.log(chunk);
-          window.FreeMemory = parseFloat(chunk['Free Memory']) * 10
-          window.TotalMemory = parseFloat(chunk['Total Memory']) * 10
-          window.CpuUsage = chunk['CPU Usage'];
+          console.log(chunk);
+          window.chunk = chunk;
         },
       })
     );
@@ -30,12 +28,10 @@ async function consumeStream(signal) {
 let abortController = new AbortController();
 
 start.addEventListener('click', async()=>{
-  window.resp = await consumeStream(abortController.signal);
-  window.pause = false;
+  await consumeStream(abortController.signal);
 })
 
 stop.addEventListener('click',()=>{
-  window.pause = true;
   abortController.abort()
   console.log('aborting...');
   abortController = new AbortController();

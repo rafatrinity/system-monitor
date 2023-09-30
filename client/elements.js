@@ -4,24 +4,21 @@ const styles = {
                     grid-template-columns: repeat(3, 1fr);
                     grid-column-gap: 10px;
                     grid-row-gap: 1em;
-                    width: 98vw;
-                    height: 98vh;
-                    align-content: center;`,
+                    align-content: center;
+                    object-fit: contain;`,
   memoryContainer: `display: grid;
                     grid-column-start: 3;
                     grid-column-end: 4;
-                    width: 100%;
-                    height: 100%;
-                    align-content: center;`,
+                    align-content: center;
+                    object-fit: contain;`,
   cpuContainer: `display: grid;
                     grid-column-start: 1;
                     grid-column-end: 3;
                     grid-template-columns: repeat(2, 1fr);
                     grid-column-gap: 10px;
                     grid-row-gap: 1em;
-                    width: 100%;
-                    height: 100%;
-                    align-content: center;`,
+                    align-content: center;
+                    object-fit: contain;`,
 };
 
 const createElement = (type, id, style) => {
@@ -31,50 +28,73 @@ const createElement = (type, id, style) => {
   return element;
 };
 
+setInterval(myTimer, 1000);
+
+function myTimer() {
+  document.getElementById("upTime").innerHTML = `OS_Uptime: ${window?.chunk?.OS_Uptime}`;
+}
+
 start.addEventListener("click", async () => {
-  while (!window?.CpuUsage) {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-  }
+  let gridContainer = document.getElementById("gridContainer");
+  if (!gridContainer) {
+    while (!window?.chunk?.CPU_Usage) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
 
-  let gridContainer = createElement(
-    "div",
-    "gridContainer",
-    styles.gridContainer
-  );
+    let gridContainer = createElement(
+      "div",
+      "gridContainer",
+      styles.gridContainer
+    );
 
-  document.body.appendChild(gridContainer);
+    document.body.appendChild(gridContainer);
 
-  let memoryContainer = createElement(
-    "div",
-    "memoryContainer",
-    styles.memoryContainer
-  );
+    let memoryContainer = createElement(
+      "div",
+      "memoryContainer",
+      styles.memoryContainer
+    );
+    gridContainer.appendChild(memoryContainer);
 
-  gridContainer.appendChild(memoryContainer);
+    let cpuContainer = createElement(
+      "div",
+      "cpuContainer",
+      styles.cpuContainer
+    );
+    gridContainer.appendChild(cpuContainer);
 
-  let cpuContainer = createElement("div", "cpuContainer", styles.cpuContainer);
+    let upTime = createElement(
+      "div",
+      "upTime",
+      "margin-left: auto;color: aliceblue;"
+    );
+    let osType = createElement(
+      "div",
+      "osType",
+      "margin-left: auto;color: aliceblue;"
+    );
+    
+    let nav = document.getElementById("nav");
+    osType.innerHTML = `Os Type:${window.chunk.OS_Type}`;
+    nav.appendChild(osType);
+    nav.appendChild(upTime);
 
-  gridContainer.appendChild(cpuContainer);
-
-  let cpuAvg = document.createElement("canvas");
-  cpuAvg.id = "cpuAvg";
-  cpuAvg.style = `grid-column-start: 1;
+    let cpuAvg = document.createElement("canvas");
+    cpuAvg.id = "cpuAvg";
+    cpuAvg.style = `grid-column-start: 1;
                   grid-column-end: 3;
                   grid-row-start: 1;
                   grid-row-end: 3;
                   display: grid;
-                  max-width: 97vw;
-                  max-height: ${(98 / window.CpuUsage?.length) * 2}vh;`;
-  cpuContainer.appendChild(cpuAvg);
+                  object-fit: contain;
+                  max-height: 300px;`;
+    cpuContainer.appendChild(cpuAvg);
 
-  for (let i = 0; i < window.CpuUsage?.length; i++) {
-    let cpu = document.createElement("canvas");
-    cpu.id = "cpu" + i;
-    cpu.style = `
-                display: grid;
-                max-width: 98%;
-                max-height: ${98 / window.CpuUsage?.length}vh;`;
-    cpuContainer.appendChild(cpu);
+    for (let i = 0; i < window.chunk?.CPU_Usage?.length; i++) {
+      let cpu = document.createElement("canvas");
+      cpu.id = "cpu" + i;
+      cpu.style = `display: grid; max-height: 150px; max-width: 100%;`;
+      cpuContainer.appendChild(cpu);
+    }
   }
 });
-
