@@ -19,9 +19,9 @@ function getMemoryInfo() {
   const freeMem = os.freemem();
 
   return {
-    "Total Memory": `${(totalMem / 2 ** 30).toFixed(2)} Gb`,
-    "Free Memory": `${(freeMem / 2 ** 30).toFixed(2)} Gb`,
-    "Usage Memory": `${((freeMem / totalMem) * 100).toFixed(2)} %`,
+    "Total_Memory": `${(totalMem / 2 ** 30).toFixed(2)} Gb`,
+    "Free_Memory": `${(freeMem / 2 ** 30).toFixed(2)} Gb`,
+    "Usage_Memory": `${(((totalMem-freeMem) / totalMem) * 100).toFixed(2)} %`,
   };
 }
 
@@ -70,7 +70,7 @@ async function getSystemInfo() {
     "OS_Release": os.release(),
     "OS_Uptime": formatUptime(os.uptime()),
     ...getMemoryInfo(),
-    "Load Averages": os.loadavg(),
+    "Load_Averages": os.loadavg(),
     "CPU_Usage": cpuUsage,
   };
 }

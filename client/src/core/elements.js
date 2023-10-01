@@ -10,8 +10,8 @@ const styles = {
   memoryContainer: `display: grid;
                     grid-column-start: 3;
                     grid-column-end: 4;
-                    align-content: center;
-                    object-fit: contain;`,
+                    object-fit: contain;
+                    grid-row-start: 1;`,
 
   cpuContainer: `display: grid;
                     grid-column-start: 1;
@@ -20,7 +20,8 @@ const styles = {
                     grid-column-gap: 10px;
                     grid-row-gap: 1em;
                     align-content: center;
-                    object-fit: contain;`,
+                    object-fit: contain;
+                    grid-row-start: 1;`,
 };
 
 export const createElement = (type, id, style) => {
