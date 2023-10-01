@@ -1,6 +1,6 @@
 const [start, stop] = ["start", "stop"].map((_) => document.getElementById(_));
 
-const charts = [];
+export const charts = [];
 
 function getRandomColor() {
   return [
@@ -10,15 +10,7 @@ function getRandomColor() {
   ];
 }
 
-function cpuAvg() {
-  let sum = 0;
-  for (let i = 0; i < window.chunk?.CPU_Usage?.length; i++) {
-    sum = sum + parseFloat(window.chunk?.CPU_Usage[i].usage);
-  }
-  return sum / window.chunk?.CPU_Usage?.length;
-}
-
-function createLineChart(id, label, usageFunc) {
+export function createLineChart(id, label, usageFunc) {
   const [R, G, B] = getRandomColor();
   const datasets = [
     {
@@ -72,19 +64,6 @@ start.addEventListener("click", async () => {
     charts.forEach((chart) => {
       chart.options.plugins.streaming.pause = false;
     });
-  }
-  else{
-    while (!window?.chunk?.CPU_Usage) {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-    }
-  
-    window.chunk?.CPU_Usage.map((cpu, i) =>
-      createLineChart("cpu" + i, `${cpu.name} ${i} usage`, () =>
-        parseFloat(window.chunk?.CPU_Usage[i].usage)
-      )
-    );
-  
-    createLineChart("cpuAvg", "Avg CPU_Usage", cpuAvg);
   }
 });
 

@@ -1,5 +1,6 @@
 const API_URL = "http://localhost:3000";
 const [start, stop] = ["start", "stop"].map((_) => document.getElementById(_));
+let abortController = new AbortController();
 
 async function consumeStream(signal) {
   const response = await fetch(API_URL, {
@@ -24,8 +25,6 @@ async function consumeStream(signal) {
     );
   return reader;
 }
-
-let abortController = new AbortController();
 
 start.addEventListener('click', async()=>{
   await consumeStream(abortController.signal);
