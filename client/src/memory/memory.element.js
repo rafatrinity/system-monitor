@@ -1,5 +1,14 @@
+/**
+ * Botões de início e parada.
+ * @type {HTMLElement[]}
+ */
 const [start, stop] = ["start", "stop"].map((_) => document.getElementById(_));
 
+/**
+ * Atualiza as informações de memória na página.
+ *
+ * @param {HTMLElement} memoryInfo - O elemento HTML onde as informações de memória serão exibidas.
+ */
 function updateMemoryInfo(memoryInfo) {
   memoryInfo.innerHTML = `free: ${window?.chunk?.Free_Memory}
                           total: ${window?.chunk?.Total_Memory}

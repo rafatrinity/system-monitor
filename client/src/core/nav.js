@@ -1,5 +1,8 @@
 import { createElement } from './elements.js';
 
+/**
+ * Atualiza o tempo de atividade do sistema operacional na página.
+ */
 function myTimer() {
   document.getElementById(
     "upTime"

@@ -1,7 +1,20 @@
+/**
+ * Botões de início e parada.
+ * @type {HTMLElement[]}
+ */
 const [start, stop] = ["start", "stop"].map((_) => document.getElementById(_));
 
+/**
+ * Array para armazenar os gráficos criados.
+ * @type {Array}
+ */
 export const charts = [];
 
+/**
+ * Gera uma cor aleatória.
+ *
+ * @returns {number[]} Um array contendo três números representando uma cor RGB.
+ */
 function getRandomColor() {
   return [
     Math.floor(Math.random() * 156) + 100,
@@ -10,6 +23,13 @@ function getRandomColor() {
   ];
 }
 
+/**
+ * Cria um gráfico de linha.
+ *
+ * @param {string} id - O ID do elemento do DOM onde o gráfico será criado.
+ * @param {string} label - O rótulo para o conjunto de dados do gráfico.
+ * @param {Function} usageFunc - A função que retorna o valor a ser plotado no gráfico.
+ */
 export function createLineChart(id, label, usageFunc) {
   const [R, G, B] = getRandomColor();
   const datasets = [
@@ -59,6 +79,7 @@ export function createLineChart(id, label, usageFunc) {
   charts.push(new Chart(document.getElementById(id), config));
 }
 
+// Adiciona um ouvinte de evento ao botão de início para iniciar a atualização dos gráficos.
 start.addEventListener("click", async () => {
   if (charts.length > 0) {
     charts.forEach((chart) => {
@@ -67,6 +88,7 @@ start.addEventListener("click", async () => {
   }
 });
 
+// Adiciona um ouvinte de evento ao botão de parada para interromper a atualização dos gráficos.
 stop.addEventListener("click", () => {
   if (charts.length > 0) {
     charts.forEach((chart) => {
