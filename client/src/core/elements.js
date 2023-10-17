@@ -10,27 +10,27 @@ const [start, stop] = ["start", "stop"].map((_) => document.getElementById(_));
  */
 const styles = {
   gridContainer: `display: grid;
-                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-columns: repeat(12, 1fr);
                     grid-column-gap: 10px;
                     grid-row-gap: 1em;
                     align-content: center;
                     object-fit: contain;`,
 
-  memoryContainer: `display: grid;
-                    grid-column-start: 3;
-                    grid-column-end: 4;
-                    object-fit: contain;
-                    grid-row-start: 1;`,
+  // memoryContainer: `display: grid;
+  //                   grid-column-start: 3;
+  //                   grid-column-end: 4;
+  //                   object-fit: contain;
+  //                   grid-row-start: 1;`,
 
-  cpuContainer: `display: grid;
-                    grid-column-start: 1;
-                    grid-column-end: 3;
-                    grid-template-columns: repeat(2, 1fr);
-                    grid-column-gap: 10px;
-                    grid-row-gap: 1em;
-                    align-content: center;
-                    object-fit: contain;
-                    grid-row-start: 1;`,
+  // cpuContainer: `display: grid;
+  //                   grid-column-start: 1;
+  //                   grid-column-end: 5;
+  //                   grid-template-columns: repeat(4, 1fr);
+  //                   grid-column-gap: 10px;
+  //                   grid-row-gap: 1em;
+  //                   align-content: center;
+  //                   object-fit: contain;
+  //                   grid-row-start: 1;`,
 };
 
 /**
@@ -59,18 +59,18 @@ start.addEventListener("click", () => {
     );
     document.body.appendChild(gridContainer);
 
-    let memoryContainer = createElement(
-      "div",
-      "memoryContainer",
-      styles.memoryContainer
-    );
-    gridContainer.appendChild(memoryContainer);
+    // let memoryContainer = createElement(
+    //   "div",
+    //   "memoryContainer",
+    //   styles.memoryContainer
+    // );
+    // gridContainer.appendChild(memoryContainer);
 
-    let cpuContainer = createElement(
-      "div",
-      "cpuContainer",
-      styles.cpuContainer
-    );
-    gridContainer.appendChild(cpuContainer);
+    // let cpuContainer = createElement(
+    //   "div",
+    //   "cpuContainer",
+    //   styles.cpuContainer
+    // );
+    // gridContainer.appendChild(cpuContainer);
   }
 });

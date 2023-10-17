@@ -30,10 +30,12 @@ function getRandomColor() {
  * @param {string} label - O rótulo para o conjunto de dados do gráfico.
  * @param {Function} usageFunc - A função que retorna o valor a ser plotado no gráfico.
  */
-export function createLineChart(id, label, usageFunc) {
-  const [R, G, B] = getRandomColor();
-  const datasets = [
-    {
+export function createLineChart(id, label, usageFunc, lines = 1) {
+  const datasets = [];
+
+  for (let i = 0; i < lines; i++) {
+    const [R, G, B] = getRandomColor();
+    datasets.push({
       label: label,
       data: [],
       backgroundColor: `rgba(${R}, ${G}, ${B}, 0.4)`,
@@ -41,8 +43,8 @@ export function createLineChart(id, label, usageFunc) {
       tension: 0.3,
       borderWidth: 1,
       fill: true,
-    },
-  ];
+    });
+  }
 
   const config = {
     type: "line",
@@ -62,10 +64,10 @@ export function createLineChart(id, label, usageFunc) {
           type: "realtime",
           realtime: {
             onRefresh: (chart) => {
-              chart.data.datasets.forEach((dataset) => {
+              chart.data.datasets.forEach((dataset, i) => {
                 dataset.data.push({
                   x: Date.now(),
-                  y: usageFunc(),
+                  y: usageFunc(i),
                 });
               });
             },
