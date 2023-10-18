@@ -5,20 +5,28 @@ start.addEventListener("click", async () => {
     await new Promise((resolve) => setTimeout(resolve, 500));
   }
   const gridContainer = document.getElementById("gridContainer");
+  let col = 1;
+  let row = 3;
   for (let i = 0; i < window.chunk?.CPU_Usage?.length; i++) {
     if (!document.getElementById("cpu" + i)) {
       const cpu = document.createElement("canvas");
 
-      const row = Math.floor(i/4);
-      const col = i*3-(row*4)
+     
       cpu.id = "cpu" + i;
       cpu.style = `display: grid; 
-                   max-height: 250px; 
+                   max-height: 25vh; 
                    max-width: 100%;
-                   grid-row-start: ${row+2};
-                   grid-row-end: ${row+3};
-                   grid-column-start: ${col+1};
-                   grid-column-end: ${col+4};`;
+                   width: 100%;
+                   grid-row-start: ${row};
+                   grid-row-end: ${row + 2};
+                   grid-column-start: ${col};
+                   grid-column-end: ${col + 3};`;
+
+      if(col > 9){
+        col = 1;
+        row = row + 2;
+      }
+      else col = col+3;
 
       gridContainer.appendChild(cpu);
     }

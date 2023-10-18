@@ -12,7 +12,7 @@ start.addEventListener("click", async () => {
  
      // Map over CPU usage array and create line charts
      window.chunk?.CPU_Usage.map((cpu, i) => {
-       createLineChart(`cpu${i}`, `${cpu.name} ${i} usage`, () =>
+       createLineChart(`cpu${i}`, `${cpu.name} ${i}`, () =>
          parseFloat(window?.chunk?.CPU_Usage[i].usage)
        );
      });

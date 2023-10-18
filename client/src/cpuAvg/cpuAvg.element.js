@@ -6,19 +6,17 @@ start.addEventListener("click", async () => {
     while (!window?.chunk?.CPU_Usage) {
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
-    const cpuContainer = document.getElementById("cpuContainer");
+    const gridContainer = document.getElementById("gridContainer");
 
     const cpuAvg = document.createElement("canvas");
 
     cpuAvg.id = "cpuAvg";
-    cpuAvg.style = `grid-column-start: 1;
-                      grid-column-end: 3;
-                      grid-row-start: 1;
-                      grid-row-end: 3;
-                      display: grid;
-                      object-fit: contain;
-                      max-height: 300px;`;
+    cpuAvg.style = `display: grid;
+                    grid-area: 1 / 1 / 3 / 7;
+                    width: 100%;
+                    max-height: 35vh;
+                    max-width: 100%`;
 
-    cpuContainer.appendChild(cpuAvg);
+    gridContainer.appendChild(cpuAvg);
   }
 });

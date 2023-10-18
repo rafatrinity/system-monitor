@@ -24,16 +24,18 @@ start.addEventListener("click", async () => {
     while (!window?.chunk?.Usage_Memory) {
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
-    const memoryContainer = document.getElementById("memoryContainer");
+    const gridContainer = document.getElementById("gridContainer");
 
     const memoryUsage = document.createElement("canvas");
 
     memoryUsage.id = "memoryUsage";
     memoryUsage.style = `display: grid;
-                         object-fit: contain;
-                         max-height: 300px;`;
+                          grid-area: 1 / 7 / 3 / 13;
+                          width: 100%;
+                          max-height: 35vh;
+                          max-width: 100%`;
 
-    memoryContainer.appendChild(memoryUsage);
+    gridContainer.appendChild(memoryUsage);
 
     // const memoryInfo = document.createElement("div");
     // memoryUsage.id = "memoryInfo";

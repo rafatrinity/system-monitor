@@ -51,7 +51,7 @@ export function createLineChart(id, label, usageFunc, lines = 1) {
     data: { datasets },
     options: {
       radius: 0,
-      responsive: true,
+      responsive: false,
       plugins: {
         streaming: {
           duration: 60000,
