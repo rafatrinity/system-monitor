@@ -15,22 +15,6 @@ const styles = {
                     grid-row-gap: 1em;
                     align-content: center;
                     object-fit: contain;`,
-
-  // memoryContainer: `display: grid;
-  //                   grid-column-start: 3;
-  //                   grid-column-end: 4;
-  //                   object-fit: contain;
-  //                   grid-row-start: 1;`,
-
-  // cpuContainer: `display: grid;
-  //                   grid-column-start: 1;
-  //                   grid-column-end: 5;
-  //                   grid-template-columns: repeat(4, 1fr);
-  //                   grid-column-gap: 10px;
-  //                   grid-row-gap: 1em;
-  //                   align-content: center;
-  //                   object-fit: contain;
-  //                   grid-row-start: 1;`,
 };
 
 /**
@@ -58,19 +42,5 @@ start.addEventListener("click", () => {
       styles.gridContainer
     );
     document.body.appendChild(gridContainer);
-
-    // let memoryContainer = createElement(
-    //   "div",
-    //   "memoryContainer",
-    //   styles.memoryContainer
-    // );
-    // gridContainer.appendChild(memoryContainer);
-
-    // let cpuContainer = createElement(
-    //   "div",
-    //   "cpuContainer",
-    //   styles.cpuContainer
-    // );
-    // gridContainer.appendChild(cpuContainer);
   }
 });

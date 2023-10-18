@@ -36,10 +36,5 @@ start.addEventListener("click", async () => {
                           max-width: 100%`;
 
     gridContainer.appendChild(memoryUsage);
-
-    // const memoryInfo = document.createElement("div");
-    // memoryUsage.id = "memoryInfo";
-    // memoryContainer.appendChild(memoryInfo);
-    // setInterval(() => updateMemoryInfo(memoryInfo), 1000);
   }
 });
