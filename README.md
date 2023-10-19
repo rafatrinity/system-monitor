@@ -4,7 +4,7 @@ This project is a real-time application that monitors and displays system inform
 
 The goal of this MVP project is to demonstrate what native Node.js can do with its streaming library. This project generates performance charts for the system's processor and RAM.
 
-[![CPU usage](doc/initial.jpeg "CPU usage")]('' "CPU usage")
+[![CPU usage](doc/sysMonitor.gif "CPU usage")]('' "CPU usage")
 
 ## Prerequisites :fa-list-alt:
 
